@@ -3,5 +3,4 @@ const restController = {
     return res.render('restaurants')
   }
 }
-
 module.exports = restController
