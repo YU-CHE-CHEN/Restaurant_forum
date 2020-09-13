@@ -1,0 +1,46 @@
+<h1>餐廳後台</h1>
+<div class="my-4">
+  <a href="/admin/Restaurants">Restaurants</a> | <a href="/admin/users">Users</a>
+</div>
+
+<a href='/admin/restaurants/create'>
+  <button type="button" class="btn btn-primary">New Restaurant</button>
+</a>
+
+<br />
+<br />
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">#</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.email}}</td>
+      {{#if this.isAdmin}}
+      <td>admin</td>
+      <td>
+        <form action="/admin/users/{{this.id}}?_method=PUT" method="POST">
+          <button type="submit" class="btn btn-link">set as user</button>
+        </form>
+      </td>
+      {{else}}
+      <td>user</td>
+      <td>
+        <form action="/admin/users/{{this.id}}?_method=PUT" method="POST">
+          <button type="submit" class="btn btn-link">set as admin</button>
+        </form>
+      </td>
+      {{/if}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
