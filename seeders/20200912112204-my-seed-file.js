@@ -36,7 +36,7 @@ module.exports = {
             createdAt: new Date(),
             updatedAt: new Date()
           })
-        ), {})
+        ), {});
 
     return queryInterface.bulkInsert('Restaurants',
       Array.from({ length: 50 }).map(d =>
