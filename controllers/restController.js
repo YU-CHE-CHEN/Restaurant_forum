@@ -1,5 +1,4 @@
 const db = require('../models')
-const restaurant = require('../models/restaurant')
 const Restaurant = db.Restaurant
 const Category = db.Category
 const pageLimit = 10
@@ -53,9 +52,10 @@ let restController = {
         { model: Comment, include: [User] }
       ]
     }).then(restaurant => {
-      return res.render('restaurant', {
-        restaurant: restaurant.toJSON(),
-      })
+      restaurant.increment('viewCounts')
+        .then(restaurant => {
+          return res.render('restaurant', { restaurant: restaurant.toJSON() })
+        })
     })
   },
   getFeeds: (req, res) => {
