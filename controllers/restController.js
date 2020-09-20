@@ -1,4 +1,5 @@
 const db = require('../models')
+const restaurant = require('../models/restaurant')
 const Restaurant = db.Restaurant
 const Category = db.Category
 const pageLimit = 10
@@ -78,6 +79,12 @@ let restController = {
         })
       })
     })
+  },
+  getDashboard: (req, res) => {
+    return Restaurant.findByPk(req.params.id, { include: [Comment, Category] })
+      .then(restaurant => {
+        res.render('dashboard', { restaurant: restaurant.toJSON() })
+      })
   }
 
 }
