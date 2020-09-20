@@ -4,12 +4,35 @@
     <br>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{user.name}}</h5>
-        <h3 class="card-text">{{user.email}}</h3>
+        <h3 class="card-title">{{user.name}}</h3>
+        <h5 class="card-text">{{user.email}}</h5>
+        <h6 class="restaurants.length">{{restaurants.length}} 已評論餐廳</h6>
+        </br>
+        </br>
         {{#ifCond user.id user.id}}
         <p><a href="/users/{{user.id}}/edit" class="btn btn-primary">Edit</a></p>
         {{/ifCond}}
       </div>
     </div>
+  </div>
+</div>
+</br>
+
+</br>
+
+<div class="card">
+  <div class="card-header">
+    {{restaurants.length}}個已評論餐廳
+  </div>
+  <div class="card-body row">
+    {{#each restaurants}}
+
+    <div class="col-2">
+      <a href="/restaurants/{{this.RestaurantId}}">
+        <img class="card-img-top" src="{{this.Restaurant.image}}" alt="{{this.Restaurant.name}}">
+      </a>
+    </div>
+
+    {{/each}}
   </div>
 </div>
